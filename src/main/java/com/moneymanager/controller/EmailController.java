@@ -20,7 +20,7 @@ public class EmailController {
     private final ExcelService excelService;
     private final IncomeService incomeService;
     private final ExpenseService expenseService;
-    private final EmailService emailService;
+    //private final EmailService emailService;
     private final ProfileService profileService;
 
     @GetMapping("/income-excel")
@@ -28,11 +28,11 @@ public class EmailController {
         ProfileEntity profile = profileService.getCurrentProfile();
         ByteArrayOutputStream baos = new ByteArrayOutputStream();
         excelService.writeIncomesToExcel(baos, incomeService.getCurrentMonthIncomesForCurrentUser());
-        emailService.sendEmailWithAttachment(profile.getEmail(),
-                "Your Income Excel Report",
-                "Please find attached your income report",
-                baos.toByteArray(),
-                "income.xlsx");
+        //emailService.sendEmailWithAttachment(profile.getEmail(),
+//                "Your Income Excel Report",
+//                "Please find attached your income report",
+//                baos.toByteArray(),
+//                "income.xlsx");
         return ResponseEntity.ok(null);
     }
 
@@ -41,12 +41,12 @@ public class EmailController {
         ProfileEntity profile = profileService.getCurrentProfile();
         ByteArrayOutputStream baos = new ByteArrayOutputStream();
         excelService.writeExpensesToExcel(baos, expenseService.getCurrentMonthExpensesForCurrentUser());
-        emailService.sendEmailWithAttachment(
-                profile.getEmail(),
-                "Your Expense Excel Report",
-                "Please find attached your expense report.",
-                baos.toByteArray(),
-                "expenses.xlsx");
+//        emailService.sendEmailWithAttachment(
+//                profile.getEmail(),
+//                "Your Expense Excel Report",
+//                "Please find attached your expense report.",
+//                baos.toByteArray(),
+//                "expenses.xlsx");
         return ResponseEntity.ok(null);
     }
 }
